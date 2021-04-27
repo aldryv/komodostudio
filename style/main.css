@@ -1,8 +1,16 @@
-body {
+html, body {
+  margin: 0;
+  height: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  vertical-align: middle;
+}
+html img, body img {
+  width: 300px;
+}
+html h1, body h1 {
+  margin: 0;
 }
 
 /*# sourceMappingURL=main.css.map */
