@@ -112,10 +112,26 @@ $root: '.c-rainbow';
 } 
 
 footer {
+    display: flex;
+    flex-direction: row wrap;
+    justify-content: space-around;
     flex-shrink: 0; /* Prevent Chrome, Opera, and Safari from letting these items shrink to smaller than their content's default minimum size. */
     padding: 20px;
     background-color: black;
     color: white;
 
-    p { font: 100% $font-main; font-weight: 600; }
+    p {
+        font: 100% $font-main;
+        font-weight: 600;
+        margin-top: 5px;
+    }
+}
+
+.socials {
+    ul {
+        display: inline-block;
+        list-style: none;
+        img { height: 18px; }
+        li { float: left; padding: 0 15px 0 15px; }
+    }
 }
