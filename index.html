@@ -17,8 +17,16 @@ crossorigin="anonymous"></script>
 <header>
     <nav id="main-navigation" class="navigation">
         <a href="#" class="logo">
-            <div class="logo-text">KOMODO</div>
+            <div id="logo-text">KOMODO</div>
         </a>
+        <div class="theme-switcher">
+        <i id="sun" class="fas fa-sun"></i>
+        <label class="switch">
+            <input class="modeSwitch" type="checkbox">
+            <span class="slider round"></span>
+        </label>
+        <i id="moon" class="fas fa-moon"></i>
+        </div>
         <div class="hamburger-menu">
             <div class="hamburger"></div>
         </div>
@@ -33,6 +41,20 @@ crossorigin="anonymous"></script>
     </nav>
 </header>
 <script src="js/offcanvasmenu.js"></script>
+<script>
+const toggleSwitch = document.querySelector('.modeSwitch');
+
+function switchTheme(e) {
+    if (e.target.checked) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    }
+    else {
+        document.documentElement.setAttribute('data-theme', 'light');
+    }    
+}
+
+toggleSwitch.addEventListener('change', switchTheme, false);
+</script>
 <div class="content">
     <ul class="c-rainbow">
         <li class="c-rainbow__layer c-rainbow__layer--white">SOON.</li>
@@ -50,9 +72,9 @@ crossorigin="anonymous"></script>
     </div>
     <div class="socials">
         <ul>
-            <li><a href="#"><img src="media/github.svg"></a></li>
-            <li><a href="#"><img src="media/twitter.svg"></a></li>
-            <li><a href="#"><img src="media/instagram.svg"></a></li>
+            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fab fa-github"></i></a></li>
+            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
         </ul>
     </div>
 </footer>
