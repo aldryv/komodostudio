@@ -7,11 +7,39 @@ html {
     font-family: 100% $font-main;
 }
 
+:root {
+	--nav-fg: #222;
+	--nav-bg: #fff;
+    --body-bg: #31037D;
+
+    // animacao
+    --axis-x: 1px;
+    --axis-y: 1rem;
+    --delay: 10;
+    --color-black: #000;
+    --color-white: #fff;
+    --color-orange: #D49C3D;
+    --color-red: #D14B3D;
+    --color-violet: #CF52EB;
+    --color-blue: #44A3F7;
+    --color-green: #5ACB3C;
+    --color-yellow: #DEBF40;
+    --color-foreground: var(--color-white);
+    --font-name: Righteous;
+}
+
+[data-theme="dark"] {
+	--nav-fg: #eee;
+	--nav-bg: #121212;
+    --body-bg: #121212;
+}
+
 body {
     min-height: 100%;
     display: flex;
     flex-direction: column;
-    background-color: #31037D;
+    color: var(--text-color);
+    background: var(--body-bg);
 }
   
 .content {
@@ -31,26 +59,6 @@ $root: '.c-rainbow';
         font-weight: 700;
         font-size: 56px !important;
     }
-}
-
-:root {
- --color-background: #31037D;
- 
- --axis-x: 1px;
- --axis-y: 1rem;
- --delay: 10;
- 
- --color-black: #000;
- --color-white: #fff;
- --color-orange: #D49C3D;
- --color-red: #D14B3D;
- --color-violet: #CF52EB;
- --color-blue: #44A3F7;
- --color-green: #5ACB3C;
- --color-yellow: #DEBF40;
- 
- --color-foreground: var(--color-white);
- --font-name: Righteous;
 }
 
 #{$root} {
@@ -117,8 +125,8 @@ footer {
     justify-content: space-around;
     flex-shrink: 0; /* Prevent Chrome, Opera, and Safari from letting these items shrink to smaller than their content's default minimum size. */
     padding: 20px;
-    background-color: black;
-    color: white;
+    background: var(--nav-bg);
+    color: var(--nav-fg);
 
     p {
         font: 100% $font-main;
@@ -131,7 +139,11 @@ footer {
     ul {
         display: inline-block;
         list-style: none;
-        img { height: 18px; }
-        li { float: left; padding: 0 15px 0 15px; }
+        li {
+            float: left;
+            padding: 0 15px 0 15px;
+
+            .fab { font-size: 18px; color: var(--nav-fg) }
+        }
     }
 }

@@ -2,6 +2,91 @@
 @import 'https://fonts.googleapis.com/css?family=Montserrat';
 $red: #000;
 
+/* Dark mode Switch */
+/* The switch - the box around the slider */
+
+.theme-switcher {
+	display: flex;
+    flex-direction: row wrap;
+    justify-content: center;
+	align-items: center;
+	padding: 0;
+	width: 20%;
+
+	i {
+		//margin: 15px;
+		font-size: 20px;
+		width: 50px;
+	}
+
+	#sun { color: var(--sun); }
+	#moon { color: var(--moon); padding-left: 30px;}
+}
+
+.switch {
+	position: absolute;
+	display: inline-block;
+	width: 40px;
+	height: 21px;
+	//z-index: 998;
+  }
+  
+  /* Hide default HTML checkbox */
+.switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+  
+  /* The slider */
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: black;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+  
+.slider:before {
+	position: absolute;
+	content: "";
+	height: 15px;
+	width: 15px;
+	left: 3px;
+	bottom: 3px;
+	background-color: white;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+  
+input:checked + .slider {
+	background-color: white;
+}
+  
+/*input:focus + .slider {
+	box-shadow: 0 0 1px #2196F3;
+}*/
+  
+input:checked + .slider:before {
+	-webkit-transform: translateX(19px);
+	-ms-transform: translateX(19px);
+	transform: translateX(19px);
+	background-color: black;
+}
+  
+  /* Rounded sliders */
+  .slider.round {
+	border-radius: 34px;
+  }
+  
+  .slider.round:before {
+	border-radius: 50%;
+  }
+
 @mixin menu-opened {
 
 	$t: .1;
@@ -30,13 +115,9 @@ $red: #000;
 	}
 }
 
-html {
-	font-size: 12px;
-}
+html { font-size: 12px; }
 
-body {
-	&.menu-open { overflow: hidden; }
-}
+body { &.menu-open { overflow: hidden; } }
 
 a { text-decoration: none; }
 
@@ -48,35 +129,59 @@ a { text-decoration: none; }
     padding: 0;
 }
 
-.navigation {
-    height: 90px;
-    background-color: black;
-	
-    .logo {
-	    position: fixed;
-		left: 32px;
-		top: 25px;
-		z-index: 10;
-		opacity: 1;
-		transition: opacity .3s;
+:root {
+	--nav-fg: #222;
+	--nav-bg: #fff;
+	--sun: #faba16;
+	--moon: #d1d5db;
+}
 
-		.logo-text {
-			display: inline-block;
+[data-theme="dark"] {
+	--nav-fg: #eee;
+	--nav-bg: #121212;
+	--sun: #d1d5db;
+	--moon: #44A3F7;
+}
+
+.main-header {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+}
+
+.navigation {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+    height: 90px;
+	color: var(--nav-fg);
+    background: var(--nav-bg);
+
+		.logo {
+			width: 60%;
+			display: flex;
+			align-items: center;
+			padding: 15px;
+		}
+
+		#logo-text {
 			font-size: 2.4em;
-			background-size: cover;
-            color: #fff;
+            color: var(--nav-fg);
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
 		}
-	}
 
 	.hamburger-menu {
-		width: 40px;
-		height: 40px;
-		position: fixed;
-		padding: 15px 8px;
-		top: 25px;
-		right: 32px;
+		//width: 40px;
+		//height: 40px;
+		//position: fixed;
+		width: 20%;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		padding: 25px;
+		//top: 25px;
+		//right: 32px;
 		cursor: pointer;
 		z-index: 999;
 		opacity: 1;
@@ -105,7 +210,7 @@ a { text-decoration: none; }
 				content: '';
 				width: 24px;
 				height: 2px;
-				background: #fff;
+				background: var(--nav-fg);
 				position: absolute;
 				left: 0;
 				transition: all .2s;
@@ -126,7 +231,7 @@ a { text-decoration: none; }
                 
                 &::before,
 				&::after {
-					background: #fff;
+					background: var(--nav-fg);
 				}
 
 				&::before {
@@ -151,7 +256,7 @@ a { text-decoration: none; }
 		z-index: 800;
 		overflow: hidden;
 		transition: all .3s cubic-bezier(.99,.04,.87,1);
-		background: $red;
+		background: var(--nav-bg);
 		opacity: 0;
 
 		.menu-open & {
@@ -183,6 +288,8 @@ a { text-decoration: none; }
 			}
 
 			li {
+				font-family: 'Montserrat', sans-serif;
+				color: var(--nav-fg);
 				@include menu-opened;
 				@include menu-closed;
 				padding: 0;
@@ -222,7 +329,7 @@ a { text-decoration: none; }
 
 				a {
 					display: block;
-					color: #fff;
+					color: var(--nav-fg);
 					font-size: 1.5rem;
 					//transition: color .2s;
 					padding: 16px 0;
@@ -283,5 +390,20 @@ a { text-decoration: none; }
 				transform: translate(0, 0);
 			}
 		}
+	}
+}
+
+.navigation.dark {
+	--nav-fg: #eee;
+	--nav-bg: #121212;
+}
+
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+	.fas.fa-sun {
+		margin-right: 20px;
 	}
 }
